@@ -3536,13 +3536,6 @@
     };
 
     const Tracking = {
-        sync() {
-            CloudManager.save();
-        }
-    };
-    
-    // ... [Tracking, LoginManager, etc. remains] ...
-    const Tracking = {
       timer: null,
       sync() {
         CloudManager.save();
@@ -3663,16 +3656,11 @@
             const m = Math.floor(this.timeLeft / 60).toString().padStart(2, '0'); 
             const s = (this.timeLeft % 60).toString().padStart(2, '0'); 
             const timeStr = `${m}:${s}`;
-
-            // Cập nhật cả 2 đồng hồ (Bảng to & Huy hiệu nhỏ góc màn hình)
             const mainTimer = document.getElementById('pomoTimer');
             const miniTimer = document.getElementById('pomoMiniTimer');
             const badge = document.getElementById('pomoFloatingBadge');
-
             if (mainTimer) mainTimer.textContent = timeStr;
             if (miniTimer) miniTimer.textContent = timeStr;
-
-            // Phát sáng huy hiệu khi đếm ngược đang chạy
             if (badge) {
                 if (this.isRunning) badge.classList.add('running');
                 else badge.classList.remove('running');
